@@ -36,7 +36,7 @@ export default function CollectionPage(){
   return(
     <div className="collection-page">
       <div className="collection-hero"
-       style={{ background: `url(http://localhost:5000${collection.backgroundImage}) no-repeat center center/cover`}}
+       style={{ background: `url(https://furniture-backend-msfk.onrender.com${collection.backgroundImage}) no-repeat center center/cover`}}
       >
         <h1>{collection.name}</h1>
         <p>{collection.description}</p>
@@ -45,7 +45,7 @@ export default function CollectionPage(){
       <div className="collection-product-grid">
         {collection.products.map((product) => (
           <div key={product._id} className="collection-product-card"> 
-            <img src={`http://localhost:5000${product.images[0]}`} alt={product.name} />
+            <img src={`https://furniture-backend-msfk.onrender.com${product.images[0]}`} alt={product.name} />
             <h3>{product.name}</h3>
             <p>{formatCurrency(product.priceCents)}</p>
             <button className='view-more' onClick={() => navigate(`/productDetail/${product._id}`)}>View more details</button>

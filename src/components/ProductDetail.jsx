@@ -46,7 +46,7 @@ export default function ProductDetail() {
         >
           {product.images.map((img, index) => (
             <SwiperSlide key={index}>
-              <img src={`http://localhost:5000${img}`} alt={`${product.name} ${index + 1}`} className="slide-image" />
+              <img src={`https://furniture-backend-msfk.onrender.com${img}`} alt={`${product.name} ${index + 1}`} className="slide-image" />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -14,7 +14,7 @@ export default function FeaturedCollections() {
        {collections.map((collection) => {
         return (
           <div className="collections-element" key={collection.key}>                     
-            <img src={`http://localhost:5000${collection.backgroundImage}`} alt="Sofa" className="collection-image" />
+            <img src={`https://furniture-backend-msfk.onrender.com${collection.backgroundImage}`} alt="Sofa" className="collection-image" />
             <h3 className="text-xl font-semibold mb-2"> {collection.name} </h3>
             <p className="text-gray-600">{collection.description}</p>
             <Link to={`/collections/${collection.key}`}>See more</Link>

@@ -18,7 +18,7 @@ export default function SearchResults() {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/search?query=${query}`); 
+        const res = await axios.get(`https://furniture-backend-msfk.onrender.com/api/search?query=${query}`); 
         setProducts(res.data.products);
         setLoading(false);
         console.log("Search results:", res.data.products);
@@ -43,7 +43,7 @@ export default function SearchResults() {
             <div className="product-image">
               <img 
                 src={product.images?.length > 0 
-                  ? `http://localhost:5000${product.images[0]}` 
+                  ? `https://furniture-backend-msfk.onrender.com${product.images[0]}` 
                   : "/images/placeholder.jpg"} 
                 alt={product.name} 
               />
