@@ -53,18 +53,17 @@ const AuthForm = ({ type }) => {
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             required
+          /> 
+          
+          <input
+            type="text"
+            name="phone"
+            value={form.phone}
+            onChange={(e) => setForm({ ...form, phone: e.target.value })}
+            placeholder="+256 700 123456"
+            required
           />
-          <label>
-            Phone:
-            <input
-              type="text"
-              name="phone"
-              value={form.phone}
-              onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              placeholder="+256 700 123456"
-              required
-            />
-          </label>
+          
         </>
       )}
       <input
