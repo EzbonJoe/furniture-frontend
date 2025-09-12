@@ -52,7 +52,7 @@ const ProductSelectionPage = () => {
             }}
           >
             <img
-              src={`http://localhost:5000${product.image}`}
+              src={`https://furniture-backend-msfk.onrender.com${product.image}`}
               alt={product.name}
               style={{ width: '100%', height: '100px', objectFit: 'cover', borderRadius: '6px' }}
             />

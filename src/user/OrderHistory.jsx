@@ -66,7 +66,7 @@ const OrderHistory = () => {
                   <div className="order-item" key={item._id}>
                     <img
                       className="order-item-image"
-                      src={`http://localhost:5000${item.product.images[0]}`}
+                      src={`https://furniture-backend-msfk.onrender.com${item.product.images[0]}`}
                       alt={item.product.name}
                     />
                     <div className="order-item-details">
