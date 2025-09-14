@@ -74,7 +74,7 @@ const WishList = () => {
               <div className="image-wrapper">
                 <Link to={`/productDetail/${product._id}`}>
                   <img
-                    src={`http://localhost:5000${product.images[0]}`}
+                    src={`https://furniture-backend-msfk.onrender.com${product.images[0]}`}
                     alt={product.name}
                   />
                 </Link>

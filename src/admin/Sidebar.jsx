@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Sidebar = () => { 
+  const navigate = useNavigate();
   return (
     <div className="sidebar" style={{ width: '250px', backgroundColor: '#f4f4f4', padding: '20px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
       <h2>Admin Dashboard</h2>
@@ -26,7 +27,7 @@ const Sidebar = () => {
             onClick={() => {
               localStorage.removeItem("token");
               localStorage.removeItem("user");
-              window.location.href = "/login";
+              navigate("/login");
             }}
           >
             Logout
