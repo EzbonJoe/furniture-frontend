@@ -1,4 +1,6 @@
-export default function HeroSection() {
+import {Link} from "react-router-dom"
+
+export default function HeroSection() {  
   return (
     <section className="hero-section">
       <span> Modern furniture in living room</span>
@@ -9,12 +11,12 @@ export default function HeroSection() {
         <p className="text-lg md:text-xl mb-6">
           Explore our curated collection of sustainable furniture.
         </p>
-        <a
-          href="/products"
+        <Link
+          to="/products"
           className="inline-block bg-white text-[#A97449] font-semibold py-3 px-6 rounded-2xl shadow-md hover:bg-[#f0e6df] transition"
         >
           Shop Now
-        </a>
+        </Link>
       </div>
     </section>
   );
