@@ -12,7 +12,7 @@ const ProductListingPage = () => {
 
   return (
     <div className="product-listing">
-      <h1>Furniture Collection</h1>
+      <h1>Products</h1>
       <div className="product-listing-product-grid">
         {products.map((product) => (
           <div key={product._id} className="product-listing-product-card">

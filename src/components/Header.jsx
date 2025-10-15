@@ -1,18 +1,20 @@
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { FaUserShield } from "react-icons/fa";
-import {useState} from "react"
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { FaSearch, FaTimes, FaBars, FaUserShield } from "react-icons/fa";
 
-export default function Header(){
+export default function Header() {
   const user = JSON.parse(localStorage.getItem("user"));
   const isLoggedIn = !!user;
   const isAdmin = user?.isAdmin === true;
-   const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
 
   const handleSearch = () => {
     if (query.trim() !== "") {
       navigate(`/search?query=${encodeURIComponent(query)}`);
+      setShowSearch(false);
     }
   };
 
@@ -26,22 +28,26 @@ export default function Header(){
     navigate("/login");
   };
 
-  return(
-    <header>
-      <div>
-        <span><Link to="/" style={{
-          textDecoration: "none",
-          color: "white",
-          fontSize: "24px",
-          fontWeight: "bold"
-        }}>Go Furniture</Link></span>
+  return (
+    <header className="site-header">
+      {/* Left: Hamburger Menu */}
+      <button
+        className="menu-toggle"
+        onClick={() => setShowMenu(!showMenu)}
+        aria-label="Toggle menu"
+      >
+        {showMenu ? <FaTimes /> : <FaBars />}
+      </button>
+
+      {/* Center: Logo */}
+      <div className="header-logo">
+        <Link to="/" className="logo-text">
+          Go Furniture
+        </Link>
       </div>
 
-      <div>
-        <span>Logo</span>
-      </div>
-
-      <div className="search-bar-container">
+      {/* Desktop searchbar */}
+       <div className="search-bar-container">
         <input
           type="text"
           placeholder="Search for products..."
@@ -52,8 +58,34 @@ export default function Header(){
         />
         <button onClick={handleSearch}>Search</button>
       </div>
-      
-      <nav>
+
+      {/* Right: Search icon */}
+      <button
+        className="search-toggle"
+        onClick={() => setShowSearch(!showSearch)}
+        aria-label="Toggle search"
+      >
+        {showSearch ? <FaTimes /> : <FaSearch />}
+      </button>
+
+    
+
+      {/* Slide-down search bar */}
+      {showSearch && (
+        <div className="mobile-search-bar">
+          <input
+            type="text"
+            placeholder="Search for products..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={handleKeyPress}
+          />
+          <button onClick={handleSearch}>Search</button>
+        </div>
+      )}
+
+      {/* Desktop navigation links */}
+       <nav className="desktop-nav">
         <ul>
           <li><Link to="/" className="link">Home</Link></li>
           <li><Link to="/products" className="link">Products</Link></li> 
@@ -86,9 +118,45 @@ export default function Header(){
             </>
           )}
         </ul>
-
       </nav>
-    
+
+      {/* Slide-in mobile menu */}
+      <div className={`mobile-menu ${showMenu ? "open" : ""}`}>
+        <ul>
+          <li><Link to="/" onClick={() => setShowMenu(false)}>Home</Link></li>
+          <li><Link to="/products" onClick={() => setShowMenu(false)}>Products</Link></li>
+          <li><Link to="/about" onClick={() => setShowMenu(false)}>About</Link></li>
+          <li><Link to="/contact" onClick={() => setShowMenu(false)}>Contact</Link></li>
+
+          {isLoggedIn && !isAdmin && (
+            <>
+              <li><Link to="/cart" onClick={() => setShowMenu(false)}>Cart</Link></li>
+              <li><Link to="/userDashboard" onClick={() => setShowMenu(false)}>Dashboard</Link></li>
+              <li className="user-greeting">Hi, {user?.name?.split(" ")[0]}</li>
+              <li><button onClick={handleLogout}>Logout</button></li>
+            </>
+          )}
+
+          {isLoggedIn && isAdmin && (
+            <>
+              <li>
+                <Link to="/adminDashboard" onClick={() => setShowMenu(false)}>
+                  <FaUserShield /> Admin Panel
+                </Link>
+              </li>
+              <li className="user-greeting">{user.name}</li>
+              <li><button onClick={handleLogout}>Logout</button></li>
+            </>
+          )}
+
+          {!isLoggedIn && (
+            <>
+              <li><Link to="/login" onClick={() => setShowMenu(false)}>Login</Link></li>
+              <li><Link to="/signup" onClick={() => setShowMenu(false)}>Signup</Link></li>
+            </>
+          )}
+        </ul>
+      </div>
     </header>
-  )
+  );
 }
