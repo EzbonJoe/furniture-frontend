@@ -1331,6 +1331,25 @@ status.shipped {
 }
 
 /* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Optional: make the layout scroll smoothly under the header */
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding-top: 10px; /* optional spacing */
+}
 
 @media (min-width: 768px) {
   .site-header{
