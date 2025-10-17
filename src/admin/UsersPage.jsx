@@ -77,11 +77,11 @@ const UsersPage = () => {
           {filteredUsers.length > 0 ? (
             filteredUsers.map((user) => (
               <tr key={user._id}>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.isAdmin ? "Yes" : "No"}</td>
-                <td>{new Date(user.createdAt).toLocaleDateString()}</td>
-                <td className="actions">
+                <td data-label="Name">{user.name}</td>
+                <td data-label="Email">{user.email}</td>
+                <td data-label="Admin">{user.isAdmin ? "Yes" : "No"}</td>
+                <td data-label="Registered">{new Date(user.createdAt).toLocaleDateString()}</td>
+                <td data-label="Actions" className="actions">
                   <button
                     onClick={() => handleToggleAdmin(user._id, user.isAdmin)}
                     className="promote"
